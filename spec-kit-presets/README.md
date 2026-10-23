@@ -16,19 +16,17 @@
 
 ## What lives here
 
-These are the **Copilot-specific** Spec Kit presets — presets that depend on
-**Copilot's own agent mechanisms** rather than being agent-agnostic. This directory is
-their canonical home.
+These are **Spec Kit presets maintained for the Copilot experience**, including
+upstream-derived SDD baselines. Their instructions may remain portable.
+See [contribution scope and placement](../CONTRIBUTING.md#scope-and-package-placement)
+for maintainer guidance on which packages belong here.
 
-| Preset | Requires | Why it is Copilot-specific |
+| Preset | Requires | Copilot purpose |
 | --- | --- | --- |
+| [`copilot-full-sdd`](copilot-full-sdd) | Spec Kit `== 1.2.3`, Copilot skills mode | Full core workflow registered as Copilot skills; nine commands identical to pinned core except for extension lifecycle-hook deletions. Initial release pending. |
 | [`copilot-lean-sdd`](copilot-lean-sdd) | Spec Kit `>= 1.0.8`, Copilot skills mode | Upstream Lean's minimal artifacts with Copilot skill invocation and `ask_user`; replaces all nine core SDD commands without extension lifecycle-hook dispatch. Initial release pending. |
 | [`copilot-sub-agents`](copilot-sub-agents) | Spec Kit `>= 0.8.0` | Built around Copilot delegation mechanisms — VS Code's `runSubagent` tool, Copilot CLI sub-agent processes, and custom agents in `.github/agents/` / `~/.copilot/agents/`. |
 | [`copilot-assess-ask-questions`](copilot-assess-ask-questions) | Spec Kit `>= 0.9.0`, the `assess` extension | Drives the assess pipeline through Copilot's interactive `ask_user` tool (App, CLI, VS Code). No plain-text fallback — not meant for agents without an interactive question tool. |
-
-Only Copilot-specific presets belong here. Agent-agnostic presets (generic themes,
-extension-specific workflows that don't rely on Copilot's tools) do **not** belong in
-this Copilot integration hub.
 
 ## Installing a preset
 
@@ -51,6 +49,10 @@ use the local-development installation below. After publication, the same catalo
 supports `specify preset add copilot-lean-sdd`. See its [README](copilot-lean-sdd)
 for baseline selection, prerequisites, and compatibility limits.
 
+`copilot-full-sdd` **1.0.0 is also pending release**; use its
+[local-development install](copilot-full-sdd#installation-and-prerequisites)
+until publication. Full and Lean are alternative baselines, not cumulative layers.
+
 The two methods below are escape hatches, not the primary path:
 
 - **One-off, without registering a catalog** — install straight from a release zip
@@ -67,6 +69,7 @@ The two methods below are escape hatches, not the primary path:
   specify preset add --dev ./spec-kit-presets/copilot-sub-agents
   specify preset add --dev ./spec-kit-presets/copilot-assess-ask-questions
   specify preset add --dev ./spec-kit-presets/copilot-lean-sdd
+  specify preset add --dev ./spec-kit-presets/copilot-full-sdd  # alternative to Lean
   ```
 
 ## Layout
@@ -75,6 +78,10 @@ The two methods below are escape hatches, not the primary path:
 spec-kit-presets/
 ├── README.md              # this file (the plumbing boundary note)
 ├── catalog.json           # Spec Kit preset catalog (NOT the Copilot marketplace)
+├── copilot-full-sdd/
+│   ├── preset.yml
+│   ├── LICENSE
+│   └── commands/
 ├── copilot-lean-sdd/
 │   ├── preset.yml
 │   ├── LICENSE
