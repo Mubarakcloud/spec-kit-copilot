@@ -1,4 +1,4 @@
-# Spec Kit for GitHub Copilot
+# Spec Kit for GitHub Copilot Mubarak
 
 **Copilot-native integrations for Spec Kit across GitHub Copilot CLI, the Copilot
 App, and VS Code.**
